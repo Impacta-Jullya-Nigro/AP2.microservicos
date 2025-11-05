@@ -4,7 +4,7 @@ Documentação das rotas de atividades.
 
 list_atividades = {
     "summary": "Lista todas as atividades",
-    "tags": ["Professores"],
+    "tags": ["Atividades"],
     "responses": {
         "200": {
             "description": "Lista de atividades",
