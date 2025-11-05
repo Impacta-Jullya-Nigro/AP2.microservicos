@@ -16,3 +16,5 @@ class Aluno(Base):
     media_final = Column(Float, nullable=True)
 
     turma = relationship("Turma", back_populates="alunos")
+    nota = relationship("Nota", back_populates="alunos", cascade="all, delete-orphan")
+    atividade = relationship("Atividade", back_populates="alunos", cascade="all, delete-orphan")

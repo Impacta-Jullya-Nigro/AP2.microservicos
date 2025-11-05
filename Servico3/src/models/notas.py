@@ -12,7 +12,7 @@ class Nota(Base):
     atividade_id = Column(Integer, nullable=False)
 
     aluno = relationship("Alunos", back_populates="notas")
-    atividade = relationship("Atividades", back_populates="notas")
+    atividade = relationship("Atividade", back_populates="notas")
 
 def to_dict(self):
         return {

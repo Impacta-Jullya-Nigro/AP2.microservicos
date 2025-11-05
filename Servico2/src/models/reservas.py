@@ -1,5 +1,6 @@
 from sqlalchemy import Boolean, Column, Date, Integer
 from src.config.base import Base
+from sqlalchemy.orm import relationship
 
 class Reserva(Base):
     __tablename__ = 'reservas'
@@ -12,6 +13,8 @@ class Reserva(Base):
     data = Column(Date, nullable=False)
 
     turma = []
+
+    turma = relationship("Turma", back_populates="reservas", cascade="all, delete-orphan")
 
     def to_dict(self):
         return {

@@ -144,3 +144,4 @@ def delete_atividade(id):
         return jsonify({"message": "Atividade deletada com sucesso"}), 200
     finally:
         session.close()
+

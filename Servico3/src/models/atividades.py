@@ -17,6 +17,7 @@ class Atividade(Base):
     atividades = []
 
     notas = relationship("Nota", back_populates="atividade", cascade="all, delete-orphan")
+    atividade = relationship("Professor", back_populates="atividades", cascade="all, delete-orphan")
     
     def to_dict(self):
         return {
