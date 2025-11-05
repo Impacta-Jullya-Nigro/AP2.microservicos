@@ -1,4 +1,3 @@
-
 from flask import Flask
 from src.config.base import Base, engine
 from src.models.response import Response

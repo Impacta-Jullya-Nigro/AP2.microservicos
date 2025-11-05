@@ -8,6 +8,8 @@ from flasgger import swag_from
 from src.docs.atividade_docs import list_atividades, get_atividade, create_atividade, update_atividade, delete_atividade
 
 atividade_bp = Blueprint("atividade", __name__)
+professor_service = ProfessorService()
+turma_service = TurmaService()
 
 @atividade_bp.route("/", methods=["GET"])
 @swag_from(list_atividades)
@@ -33,8 +35,8 @@ def get_atividade(id):
         if atividade is None:
             return jsonify({"message": "Atividade não encontrada"}), 404
 
-        turma = TurmaService.get_turma(atividade.turma_id)
-        professor = ProfessorService.get_professor(atividade.professor_id)
+        turma = turma_service.get_turma(atividade.turma_id)
+        professor = professor_service.get_professor(atividade.professor_id)
 
         if not turma:
             return jsonify({"message": "Turma não encontrada no Serviço 1"}), 404
@@ -63,11 +65,11 @@ def create_atividade():
             if field not in data:
                 return jsonify({"message": f"Campo {field} é obrigatório"}), 400
 
-        turma = TurmaService.get_turma(data['turma_id'])
+        turma = turma_service.get_turma(data['turma_id'])
         if not turma:
             return jsonify({"message": "Turma não encontrada no Serviço 1"}), 404
 
-        professor = ProfessorService.get_professor(data['professor_id'])
+        professor = professor_service.get_professor(data['professor_id'])
         if not professor:
             return jsonify({"message": "Professor não encontrado no Serviço 1"}), 404
 
@@ -97,13 +99,13 @@ def update_atividade(id):
 
         data = request.get_json()
         if 'turma_id' in data:
-            turma = TurmaService.get_turma(data['turma_id'])
+            turma = turma_service.get_turma(data['turma_id'])
             if not turma:
                 return jsonify({"message": "Turma não encontrada no Serviço 1"}), 404
             atividade.turma_id = data['turma_id']
         
         if 'professor_id' in data:
-            professor = ProfessorService.get_professor(data['professor_id'])
+            professor = professor_service.get_professor(data['professor_id'])
             if not professor:
                 return jsonify({"message": "Professor não encontrado no Serviço 1"}), 404
             atividade.professor_id = data['professor_id']
