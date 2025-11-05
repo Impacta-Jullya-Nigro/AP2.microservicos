@@ -9,7 +9,7 @@ class Atividade(Base):
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome_atividade = Column(String(100), nullable=False)
     descricao = Column(Integer, nullable=False)
-    peso_porcento = Column(Float, nullable=False, default=False)
+    peso_porcento = Column(Integer, nullable=False, default=False)
     data_entrega = Column(Date, nullable=False)
     turma_id = Column(Integer, nullable=False) 
     professor_id = Column(Integer, nullable=False)
