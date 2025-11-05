@@ -22,7 +22,7 @@ def get_notas():
         session.close()
 
 
-@nota_bp.route("/", methods=["GET"])
+@nota_bp.route("/<int:id>", methods=["GET"])
 @swag_from(get_nota)
 def get_nota(id):
     session = SessionLocal()
