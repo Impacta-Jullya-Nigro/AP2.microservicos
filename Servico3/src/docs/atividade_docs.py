@@ -133,10 +133,6 @@ create_atividade = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "ID da Atividade"
-                    },
                     "nome_atividade": {
                         "type": "string",
                         "description": "Nome da Atividade"
@@ -146,7 +142,7 @@ create_atividade = {
                         "description": "descricao da Atividade"
                     },
                     "peso_porcento": {
-                        "type": "float",
+                        "type": "Integer",
                         "description": "Peso em porcento da Atividade"
                     },
                     "data_entrega": {
@@ -222,10 +218,6 @@ update_atividade = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "ID da Atividade"
-                    },
                     "nome_atividade": {
                         "type": "string",
                         "description": "Nome da Atividade"

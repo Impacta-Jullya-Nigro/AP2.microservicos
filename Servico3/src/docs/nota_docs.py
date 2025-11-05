@@ -123,10 +123,6 @@ create_nota = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "ID da nota"
-                    },
                      "nota": {
                         "type": "number",
                         "format": "float",
@@ -200,10 +196,6 @@ update_nota = {
             "schema": {
                 "type": "object",
                 "properties": {
-                    "id": {
-                        "type": "integer",
-                        "description": "ID da nota"
-                    },
                      "nota": {
                         "type": "number",
                         "format": "float",
