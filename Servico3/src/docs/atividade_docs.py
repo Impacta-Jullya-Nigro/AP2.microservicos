@@ -26,7 +26,7 @@ list_atividades = {
                             "description": "descricao da Atividade"
                         },
                         "peso_porcento": {
-                            "type": "float",
+                            "type": "Integer",
                             "description": "Peso em porcento da Atividade"
                         },
                         "data_entrega": {
@@ -93,7 +93,7 @@ get_atividade = {
                                         "description": "descricao da Atividade"
                                     },
                                     "peso_porcento": {
-                                        "type": "float",
+                                        "type": "Integer",
                                         "description": "Peso em porcento da Atividade"
                                     },
                                     "data_entrega": {
@@ -227,7 +227,7 @@ update_atividade = {
                         "description": "descricao da Atividade"
                     },
                     "peso_porcento": {
-                        "type": "float",
+                        "type": "Integer",
                         "description": "Peso em porcento da Atividade"
                     },
                     "data_entrega": {
@@ -266,7 +266,7 @@ update_atividade = {
                                     "id": { "type": "integer" },
                                     "nome_atividade": { "type": "string" },
                                     "descricao": { "type": "string" },
-                                    "peso_porcento": { "type": "float" },
+                                    "peso_porcento": { "type": "Integer" },
                                     "data_entrega": { "type": "string", "format": "date" },
                                     "turma_id": { "type": "integer" },
                                     "professor_id": { "type": "integer"}
