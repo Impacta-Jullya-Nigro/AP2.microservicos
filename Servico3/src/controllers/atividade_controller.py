@@ -78,7 +78,7 @@ def create_atividade():
             professor_id=data['professor_id'],
             nome_atividade=data['nome_atividade'],
             data_entrega=data['data_entrega'],
-            peso_porcento=data.get('peso_porcento', 0),
+            peso_porcento=data.get('peso_porcento'),
             descricao=data.get('descricao', '')
         )
 
