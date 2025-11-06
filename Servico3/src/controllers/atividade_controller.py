@@ -77,10 +77,9 @@ def create_atividade():
             turma_id=data['turma_id'],
             professor_id=data['professor_id'],
             nome_atividade=data['nome_atividade'],
-            data_entrega=data['data_entrega']
+            data_entrega=data['data_entrega'],
             peso_porcento=data.get('peso_porcento', 0),
             descricao=data.get('descricao', '')
-            
         )
 
         session.add(nova_atividade)
