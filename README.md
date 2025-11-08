@@ -1,7 +1,28 @@
-# AP2.microservicos
+# AP2.microservicos 🚀
 
-Repositório de exemplo com arquitetura de microserviços para a AP2.
-Este repositório contém atualmente dois microserviços prontos: `Servico1` (API Escola) e `Servico2` (API Reservas) e `Servico3` (API Atividades).
+Repositório de exemplo com arquitetura de microsserviços para a AP2.
+Este repositório contém três microsserviços: **`Servico1` (API Escola)**, **`Servico2` (API Reservas)** e **`Servico3` (API Atividades e Notas)**.
+
+## Visão Geral dos Microsserviços
+
+| Serviço | Nome da API | Porta (Interna/Externa) | Tecnologias Chave | Detalhes |
+| :--- | :--- | :--- | :--- | :--- |
+| **`Servico1`** | **API Escola** | `5000` / `5000` | Flask, SQLAlchemy, Flasgger | Gerencia **Professores**, **Alunos** e **Turmas**. |
+| **`Servico2`** | **API Reservas** | `5001` / `5001` | Flask, SQLAlchemy, Requests | Gerencia **Reservas de Salas**. **Consome** dados do `Servico1`. |
+| **`Servico3`** | **API Atividades e Notas** | `5002` / `5002` | Flask, SQLAlchemy, Requests | Gerencia **Atividades** e **Notas**. **Consome** dados de outros serviços (Ex.: Alunos do `Servico1`). |
+
+Todos os serviços usam **SQLite** como banco de dados local dentro do container.
+
+---
+
+## Pré-requisitos ⚙️
+
+- Docker (Para build e execução das imagens.)
+- Docker Compose (ou o plugin `docker-compose` moderno)
+- PowerShell (os comandos abaixo usam PowerShell como shell)
+
+
+---
 
 ## Visão geral
 
@@ -12,19 +33,12 @@ Este repositório contém atualmente dois microserviços prontos: `Servico1` (AP
 - Servico2: API para gerenciamento de reservas de salas.
   - Porta: 5001
   - Tecnologias: Flask, SQLAlchemy, Flasgger (Swagger), Requests (consome Servico1)
+  
 - Servico3: API para gerenciamento de Atividades e notas.
   - Porta: 5002
   - Tecnologias: Flask, SQLAlchemy, Flasgger (Swagger), Requests (consome Servico1)
 
 Todos os serviços usam SQLite como banco local dentro do container e estão preparados para rodar via Docker/Docker Compose.
-
----
-
-## Pré-requisitos
-
-- Docker
-- Docker Compose (ou o plugin `docker compose` moderno)
-- PowerShell (os comandos abaixo usam PowerShell como shell)
 
 ---
 
@@ -65,7 +79,11 @@ docker-compose up --build
 
 Observações:
 - O `docker-compose.yml` na raiz já está preparado para orquestrar `Servico1` e `Servico2` numa rede `microservices-network`.
+
 - `Servico2` depende de `Servico1` (configuração `depends_on` baseada em healthcheck) para garantir que as requisições entre serviços funcionem.
+
+- `Servico3` também está configurado na rede microservices-network e deve declarar dependência (depends_on) dos demais serviços (ou de quem ele consome) para garantir a ordem correta de inicialização.
+
 
 Para rodar em background (detached):
 
@@ -93,7 +111,7 @@ docker-compose down
   - Swagger UI: http://localhost:5001/swagger/
   - Reservas: http://localhost:5001/reservas
 
-- Servico2 (API Atividades)
+- Servico3 (API Atividades)
   - Swagger UI: http://localhost:5002/swagger/
   - Reservas: http://localhost:5002/atividades
 
