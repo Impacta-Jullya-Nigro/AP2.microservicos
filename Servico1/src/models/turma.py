@@ -11,7 +11,5 @@ class Turma(Base):
     professor_id = Column(Integer, ForeignKey("professores.id"), nullable=False)
     ativo = Column(Boolean, default=True)
 
-    professor = relationship("Professor", back_populates="turmas", cascade="all, delete-orphan")
+    professor = relationship("Professor", back_populates="turmas")
     alunos = relationship("Aluno", back_populates="turma", cascade="all, delete-orphan")
-    atividade = relationship("Atividade", back_populates="turmas", cascade="all, delete-orphan")
-    reservas = relationship("Reserva", back_populates="turma", cascade="all, delete-orphan")

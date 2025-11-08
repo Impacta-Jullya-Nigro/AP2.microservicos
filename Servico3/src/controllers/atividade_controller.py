@@ -5,6 +5,7 @@ from src.models.atividades import Atividade
 from src.services.professor_service import ProfessorService
 from src.services.turma_service import TurmaService
 from flasgger import swag_from
+from datetime import datetime
 from src.docs.atividade_docs import list_atividades, get_atividade, create_atividade, update_atividade, delete_atividade
 
 atividade_bp = Blueprint("atividade", __name__)
@@ -60,10 +61,19 @@ def create_atividade():
         if not data:
             return jsonify({"message": "Dados da atividade não fornecidos"}), 400
 
-        required_fields = ['turma_id', 'professor_id', 'nome_atividade']
+        required_fields = ['turma_id', 'professor_id', 'nome_atividade', 'data_entrega']
         for field in required_fields:
             if field not in data:
                 return jsonify({"message": f"Campo {field} é obrigatório"}), 400
+            
+        data_entrega_str = data['data_entrega']
+        try:
+            # Converte a string (ex: '2025-11-09') para um objeto date
+            data_entrega_obj = datetime.strptime(data_entrega_str, '%Y-%m-%d').date()
+        except ValueError:
+            # Adiciona tratamento de erro se o formato da data estiver incorreto
+            return jsonify({"message": "Formato de data inválido para 'data_entrega'. Use o formato AAAA-MM-DD."}), 400
+        # --- A CORREÇÃO TERMINA AQUI ---
 
         turma = turma_service.get_turma(data['turma_id'])
         if not turma:
@@ -77,7 +87,7 @@ def create_atividade():
             turma_id=data['turma_id'],
             professor_id=data['professor_id'],
             nome_atividade=data['nome_atividade'],
-            data_entrega=data['data_entrega'],
+            data_entrega=data_entrega_obj,
             peso_porcento=data.get('peso_porcento'),
             descricao=data.get('descricao', '')
         )
@@ -116,7 +126,14 @@ def update_atividade(id):
             atividade.nome_atividade = data['nome_atividade']
 
         if 'data_entrega' in data:
-            atividade.data_entrega = data['data_entrega']
+            data_entrega_str = data['data_entrega']
+        try:
+
+            data_entrega_obj = datetime.strptime(data_entrega_str, '%Y-%m-%d').date()
+        except ValueError:
+            return jsonify({"message": "Formato de data inválido para 'data_entrega'. Use o formato AAAA-MM-DD."}), 400
+        
+        atividade.data_entrega = data_entrega_obj
 
         if 'descricao' in data:
             atividade.descricao = data['descricao']

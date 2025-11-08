@@ -13,4 +13,3 @@ class Professor(Base):
     observacoes = Column(Text, nullable=True)
 
     turmas = relationship("Turma", back_populates="professor", cascade="all, delete-orphan")
-    atividade = relationship("Atividade", back_populates="professsor", cascade="all, delete-orphan")

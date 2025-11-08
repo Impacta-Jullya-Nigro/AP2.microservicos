@@ -14,7 +14,7 @@ def create_app():
     
     setup_swagger(app)
 
-    app.register_blueprint(atividade_bp, url_prefix="/atividades")
+    app.register_blueprint(atividade_bp, url_prefix="/atividade")
     app.register_blueprint(nota_bp, url_prefix="/notas")
     
     return app

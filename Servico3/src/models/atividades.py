@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Date, Integer, String, Float
+from sqlalchemy import Column, Date, Integer, String, ForeignKey
 from ..config.base import Base
 from sqlalchemy.orm import relationship
 
@@ -8,16 +8,15 @@ class Atividade(Base):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     nome_atividade = Column(String(100), nullable=False)
-    descricao = Column(Integer, nullable=False)
+    descricao = Column(String(100), nullable=False)
     peso_porcento = Column(Integer, nullable=False)
     data_entrega = Column(Date, nullable=False)
-    turma_id = Column(Integer, nullable=False) 
-    professor_id = Column(Integer, nullable=False)
+    turma_id = Column(Integer, nullable=False)
+    professor_id = Column(Integer,nullable=False)
 
     atividades = []
 
-    notas = relationship("Nota", back_populates="atividade", cascade="all, delete-orphan")
-    atividade = relationship("Professor", back_populates="atividades", cascade="all, delete-orphan")
+    notas = relationship("Nota", back_populates="atividade")
     
     def to_dict(self):
         return {

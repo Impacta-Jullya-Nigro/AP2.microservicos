@@ -30,25 +30,20 @@ def get_nota(id):
         nota = session.query(Nota).filter(Nota.id == id).first()
 
         if nota is None:
-            return jsonify({"message": "Nenhuma nota encontrada"}), 204
-        
-        aluno = nota.aluno_id
-        atividade = nota.atividade_id
+            return jsonify({"message": "Nenhuma nota encontrada"}), 404
 
-        if not aluno:
-            return jsonify({"message": "Aluno não encontrado no Serviço 1"}), 404
-        
-        if not atividade:
+        atividade_id = nota.atividade_id
+
+        if not atividade_id:
             return jsonify({"message": "Atividade não encontrada no Serviço 3"}), 404
         
-        nota.aluno = aluno
-        nota.atividade = atividade
         
-        return jsonify({"message": "Notas encontradas"}), 200
+        return jsonify({"message": "Nota encontrada", "data": nota.to_dict()}), 200
     finally:
         session.close()
+        
 
-@nota_bp.route("/<int:id>", methods=["POST"])
+@nota_bp.route("/", methods=["POST"])
 @swag_from(create_nota)
 def create_nota():
     session = SessionLocal()
@@ -65,7 +60,7 @@ def create_nota():
         nova_nota = Nota(
             aluno_id=data['aluno_id'],
             atividade_id=data['atividade_id'],
-            valor_nota=data['nota']
+            nota=data['nota']
         )
 
         session.add(nova_nota)
@@ -96,7 +91,7 @@ def update_nota(id):
             nota.atividade_id = data['atividade_id']
 
         if 'nota' in data:
-            nota.valor_nota = data['nota']
+            nota.nota = data['nota']
 
         session.commit()
 
