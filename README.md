@@ -1,14 +1,15 @@
+# INTEGRANTES DO GRUPO 15
+
+Jullya Mendonça - 2402577
+
+Melissa Moura - 2403008
+
+Humberto Lisboa - 2402662
+
 # AP2.microservicos 🚀
 
 Repositório de exemplo com arquitetura de microsserviços para a AP2.
 Este repositório contém três microsserviços: **`Servico1` (API Escola)**, **`Servico2` (API Reservas)** e **`Servico3` (API Atividades e Notas)**.
-
-
-# INTEGRANTES DO GRUPO 15
-
-Jullya Mendonça - 2402577
-Melissa Moura - 2403008
-Humberto Lisboa - 2402662
 
 
 ## Visão Geral dos Microsserviços
