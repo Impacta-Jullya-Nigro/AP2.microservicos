@@ -3,6 +3,11 @@
 Repositório de exemplo com arquitetura de microsserviços para a AP2.
 Este repositório contém três microsserviços: **`Servico1` (API Escola)**, **`Servico2` (API Reservas)** e **`Servico3` (API Atividades e Notas)**.
 
+# Integrantes
+Humberto Lisboa Leite Filho (RA: 2402662)
+Melissa Moura Ferreira (RA: 2403008)
+Jullya Mendonça Brandão Nigro (RA: 2402577)
+
 ## Visão Geral dos Microsserviços
 
 | Serviço | Nome da API | Porta (Interna/Externa) | Tecnologias Chave | Detalhes |
